@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude MCP Connector Directory | AI Whisperer Tools</title>
+<meta name="description" content="Curated directory of trusted Model Context Protocol (MCP) connectors for Claude AI. Vetted by the AI Whisperer team for business leaders and their teams.">
+<meta name="author" content="Severin Sorensen, ePraxis LLC">
+<meta property="og:title" content="Claude MCP Connector Directory | AI Whisperer">
+<meta property="og:description" content="The curated, trust-first guide to MCP connectors for Claude AI. Official, partner, and vetted community servers for business teams.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aiwhisperer.org/tools/mcp-directory">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #151515;
+    --primary-light: #2a2a2a;
+    --accent: #75c7d6;
+    --accent-dark: #5bb0bf;
+    --accent-gold: #75c7d6;
+    --highlight: #5bb0bf;
+    --link: #007bb6;
+    --text: #151515;
+    --text-light: #4f4f4f;
+    --bg: #e1e1e1;
+    --card-bg: #ffffff;
+    --border: #c8c8c8;
+    --border-light: #d8d8d8;
+    --tag-bg: #edf7f9;
+    --green: #27ae60;
+    --green-bg: #e8f8f0;
+    --blue: #007bb6;
+    --blue-bg: #e3f1f9;
+    --amber: #b7860b;
+    --amber-bg: #fdf6e3;
+    --shadow: 0 1px 4px rgba(0,0,0,0.08), 0 2px 12px rgba(0,0,0,0.04);
+    --shadow-hover: 0 4px 20px rgba(0,0,0,0.12);
+    --radius: 6px;
+    --transition: 0.2s ease;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+  h1, h2, h3, h4, .card-name, .filter-pill, .search-box input, .stat-num, .stat-label,
+  .card-meta, .card-install, .card-links a, .badge, .toc-grid a, .toolbar, .intro-card h3,
+  .eco-card h4, .eco-card p, .eco-card .eco-stat, .eco-card .eco-label, button, .result-count,
+  .breadcrumb, .meta-info, .site-footer, .trust-note, .no-results p {
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  h1, h2, h3, h4 { font-weight: 700; }
+  code, pre { font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; }
+
+  /* HEADER */
+  .site-header {
+    background: var(--primary);
+    color: white;
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+    border-bottom: 4px solid var(--accent);
+  }
+  .breadcrumb { font-size: 0.82rem; opacity: 0.7; margin-bottom: 0.75rem; letter-spacing: 0.5px; }
+  .breadcrumb a { color: rgba(255,255,255,0.7); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .site-header h1 {
+    font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.3px;
+  }
+  .site-header .subtitle {
+    font-size: 1rem;
+    opacity: 0.85;
+    max-width: 660px;
+    margin: 0 auto 0.75rem;
+    line-height: 1.5;
+  }
+  .meta-info { font-size: 0.8rem; opacity: 0.6; line-height: 1.5; }
+  .meta-info a { color: rgba(255,255,255,0.85); text-decoration: none; }
+  .meta-info a:hover { color: var(--accent); }
+
+  /* TRUST BADGE ROW */
+  .trust-bar {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(117,199,214,0.3);
+  }
+  .trust-item { text-align: center; }
+  .trust-item .trust-icon { font-size: 1.4rem; display: block; margin-bottom: 0.2rem; }
+  .trust-item .trust-text { font-size: 0.72rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* CONTAINER */
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* TOOLBAR */
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(225,225,225,0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 0;
+  }
+  .toolbar-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .search-box { flex: 1; min-width: 220px; position: relative; }
+  .search-box input {
+    width: 100%;
+    padding: 0.6rem 1rem 0.6rem 2.4rem;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color var(--transition);
+    background: white;
+  }
+  .search-box input:focus { border-color: var(--accent-dark); box-shadow: 0 0 0 2px rgba(117,199,214,0.25); }
+  .search-box::before {
+    content: '\1F50D';
+    position: absolute;
+    left: 0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+  }
+  .filter-pills { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .filter-pill {
+    padding: 0.4rem 0.85rem;
+    border: 1.5px solid var(--border);
+    border-radius: 50px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    background: white;
+    color: var(--text);
+    transition: all var(--transition);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .filter-pill:hover { border-color: var(--accent-dark); color: var(--accent-dark); }
+  .filter-pill.active { background: var(--primary); color: white; border-color: var(--primary); }
+  .result-count { font-size: 0.78rem; color: var(--text-light); margin-left: auto; white-space: nowrap; }
+
+  /* EDITORIAL NOTE */
+  .editorial-note {
+    background: white;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.75rem;
+    margin: 1.75rem 0;
+    box-shadow: var(--shadow);
+  }
+  .editorial-note h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    color: var(--primary);
+  }
+  .editorial-note p { font-size: 0.92rem; margin-bottom: 0.6rem; }
+  .editorial-note p:last-child { margin-bottom: 0; }
+  .editorial-note .trust-legend {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-light);
+  }
+  .trust-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+  }
+
+  /* HOW TO USE */
+  .howto-section {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: var(--shadow);
+  }
+  .howto-section h2 {
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary);
+  }
+  .howto-section p { font-size: 0.9rem; margin-bottom: 0.6rem; }
+  .howto-section code {
+    background: var(--tag-bg);
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    font-size: 0.82rem;
+    color: var(--accent-dark);
+  }
+  .howto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .intro-card {
+    background: var(--tag-bg);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+  }
+  .intro-card h3 { font-size: 0.92rem; margin-bottom: 0.4rem; color: var(--accent-dark); font-weight: 600; }
+  .intro-card p { font-size: 0.84rem; margin-bottom: 0; }
+  .intro-card pre {
+    background: var(--primary);
+    color: #b8d4ea;
+    padding: 0.65rem;
+    border-radius: 5px;
+    font-size: 0.76rem;
+    overflow-x: auto;
+    margin-top: 0.4rem;
+    line-height: 1.45;
+  }
+
+  /* ══════════════════════════════════════════════
+     ECOSYSTEM DASHBOARD
+     ══════════════════════════════════════════════ */
+  .ecosystem-dashboard {
+    background: linear-gradient(135deg, #edf7f9 0%, #e8f4f6 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: var(--shadow);
+  }
+  .eco-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .eco-top h2 {
+    font-size: 1.2rem;
+    color: var(--primary);
+  }
+  .eco-top .eco-updated {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    background: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+  }
+  .eco-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .eco-card {
+    background: white;
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid var(--border-light);
+  }
+  .eco-card .eco-stat {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: block;
+  }
+  .eco-card .eco-label {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-top: 0.15rem;
+  }
+  .eco-registries {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.75rem;
+  }
+  .eco-registry-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: all var(--transition);
+  }
+  .eco-registry-card:hover {
+    border-color: var(--accent-dark);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+  }
+  .eco-registry-card .eco-r-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  .eco-registry-card .eco-r-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--primary);
+  }
+  .eco-registry-card .eco-r-desc {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-top: 0.15rem;
+    line-height: 1.4;
+  }
+  .eco-registry-card .eco-r-count {
+    font-size: 0.72rem;
+    color: var(--link);
+    font-weight: 600;
+    margin-top: 0.25rem;
+  }
+
+  /* TOC */
+  .toc {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.75rem;
+    box-shadow: var(--shadow);
+  }
+  .toc h3 { font-size: 0.88rem; margin-bottom: 0.6rem; color: var(--primary); font-weight: 600; }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+    gap: 0.3rem;
+  }
+  .toc-grid a {
+    font-size: 0.84rem;
+    color: var(--link);
+    text-decoration: none;
+    padding: 0.2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .toc-grid a:hover { color: var(--accent-dark); }
+
+  /* CATEGORY SECTIONS */
+  .category-section { margin-bottom: 2rem; }
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--border);
+  }
+  .category-icon { font-size: 1.3rem; }
+  .category-header h2 { font-size: 1.25rem; color: var(--primary); }
+  .category-header .count {
+    background: var(--tag-bg);
+    color: var(--text-light);
+    padding: 0.15rem 0.55rem;
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+
+  /* CONNECTOR CARDS */
+  .connectors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 0.75rem;
+  }
+  .connector-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.15rem 1.25rem;
+    transition: all var(--transition);
+    display: flex;
+    flex-direction: column;
+  }
+  .connector-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+    border-color: var(--accent-dark);
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.35rem;
+  }
+  .card-name { font-size: 0.98rem; font-weight: 700; color: var(--primary); }
+  .card-badge {
+    font-size: 0.65rem;
+    padding: 0.12rem 0.45rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+  }
+  .badge-official { background: var(--green-bg); color: var(--green); border: 1px solid #c3e6cb; }
+  .badge-partner { background: var(--blue-bg); color: var(--blue); border: 1px solid #b8d4e8; }
+  .badge-community { background: var(--amber-bg); color: var(--amber); border: 1px solid #e8d5a8; }
+  .card-desc { font-size: 0.86rem; color: var(--text); margin-bottom: 0.6rem; flex: 1; line-height: 1.5; }
+  .card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.9rem;
+    font-size: 0.74rem;
+    color: var(--text-light);
+    margin-bottom: 0.6rem;
+  }
+  .card-meta span { display: flex; align-items: center; gap: 0.2rem; }
+  .card-install {
+    background: var(--primary);
+    color: #b8d4ea;
+    padding: 0.4rem 0.65rem;
+    border-radius: 5px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.74rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background var(--transition);
+    position: relative;
+  }
+  .card-install:hover { background: #0d1b2a; }
+  .card-install::after {
+    content: 'copy';
+    position: absolute;
+    right: 0.4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: -apple-system, sans-serif;
+    font-size: 0.65rem;
+    color: rgba(184,212,234,0.5);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+  .card-install:hover::after { opacity: 1; }
+  .card-install.copied::after { content: 'copied'; opacity: 1; color: #4caf50; }
+  .card-links { display: flex; gap: 0.6rem; margin-top: 0.45rem; }
+  .card-links a { font-size: 0.74rem; color: var(--link); text-decoration: none; font-weight: 500; }
+  .card-links a:hover { text-decoration: underline; }
+
+  /* TRUST SIGNALS */
+  .card-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-light);
+  }
+  .trust-signal {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.7rem;
+    color: var(--text-light);
+    background: var(--tag-bg);
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+  }
+  .trust-signal .ts-icon { font-size: 0.72rem; }
+  .trust-score {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-left: auto;
+  }
+  .score-high { background: var(--green-bg); color: var(--green); border: 1px solid #c3e6cb; }
+  .score-mid { background: var(--blue-bg); color: var(--blue); border: 1px solid #b8d4e8; }
+  .score-low { background: var(--amber-bg); color: var(--amber); border: 1px solid #e8d5a8; }
+  .trust-methodology {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.75rem;
+    box-shadow: var(--shadow);
+  }
+  .trust-methodology h3 { font-size: 0.92rem; color: var(--primary); margin-bottom: 0.5rem; font-weight: 600; }
+  .trust-methodology p { font-size: 0.84rem; margin-bottom: 0.4rem; }
+  .trust-methodology .scoring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+  .trust-methodology .score-item {
+    background: var(--tag-bg);
+    border-radius: 5px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.78rem;
+  }
+  .trust-methodology .score-item strong { color: var(--primary); }
+
+  .no-results { text-align: center; padding: 2.5rem; color: var(--text-light); display: none; }
+  .no-results.visible { display: block; }
+
+  /* DISCLAIMER */
+  .legal-disclaimer {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-top: 2rem;
+    box-shadow: var(--shadow);
+  }
+  .legal-disclaimer h3 {
+    font-size: 0.88rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .legal-disclaimer p {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+  .legal-disclaimer p:last-child { margin-bottom: 0; }
+
+  /* FOOTER */
+  .site-footer {
+    background: var(--primary);
+    color: rgba(255,255,255,0.65);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    margin-top: 2.5rem;
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+  .site-footer a { color: var(--accent); text-decoration: none; }
+  .site-footer a:hover { text-decoration: underline; color: #fff; }
+  .footer-inner { max-width: 800px; margin: 0 auto; }
+  .footer-links { margin-top: 0.75rem; font-size: 0.78rem; }
+  .footer-links a { margin: 0 0.5rem; }
+
+  /* BACK TO TOP */
+  .back-to-top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity var(--transition);
+    z-index: 99;
+    box-shadow: var(--shadow);
+  }
+  .back-to-top.visible { opacity: 0.85; }
+  .back-to-top:hover { opacity: 1; }
+
+  @media (max-width: 768px) {
+    .site-header h1 { font-size: 1.6rem; }
+    .connectors-grid { grid-template-columns: 1fr; }
+    .toolbar-inner { flex-direction: column; align-items: stretch; }
+    .search-box { min-width: 100%; }
+    .result-count { margin-left: 0; }
+    .eco-stats { grid-template-columns: repeat(2, 1fr); }
+    .trust-bar { gap: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header class="site-header">
+  <div class="breadcrumb"><a href="https://aiwhisperer.org">AIWhisperer.org</a> &nbsp;/&nbsp; <a href="https://aiwhisperer.org/tools">Tools</a> &nbsp;/&nbsp; MCP Directory</div>
+  <h1>Claude MCP Connector Directory</h1>
+  <p class="subtitle">A curated, trust-first guide to Model Context Protocol connectors for Claude AI &mdash; vetted for business leaders and their teams.</p>
+  <p class="meta-info">Curated by Severin Sorensen, Author, The AI Whisperer Series<br>Published by <a href="https://aiwhisperer.org">AIWhisperer.org</a> | <a href="https://epraxis.com">ePraxis LLC</a></p>
+  <p class="meta-info" style="margin-top:0.3rem;">Current as of February 28, 2026 &mdash; Directory information may not reflect real-time changes.</p>
+  <div class="trust-bar">
+    <div class="trust-item"><span class="trust-icon">&#9989;</span><span class="trust-text">Editorially Curated</span></div>
+    <div class="trust-item"><span class="trust-icon">&#128274;</span><span class="trust-text">Provenance Verified</span></div>
+    <div class="trust-item"><span class="trust-icon">&#128188;</span><span class="trust-text">Business-Grade Focus</span></div>
+    <div class="trust-item"><span class="trust-icon">&#128200;</span><span class="trust-text">Version Tracked</span></div>
+  </div>
+</header>
+
+<!-- ══════════ TOOLBAR ══════════ -->
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search connectors by name, category, or keyword..." autocomplete="off">
+    </div>
+    <div class="filter-pills" id="filterPills">
+      <button class="filter-pill active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="official">Official</button>
+      <button class="filter-pill" data-filter="partner">Partner</button>
+      <button class="filter-pill" data-filter="community">Vetted Community</button>
+    </div>
+    <div class="result-count" id="resultCount"></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ══════════ EDITORIAL NOTE ══════════ -->
+  <section class="editorial-note">
+    <h2>About This Directory</h2>
+    <p>The MCP ecosystem has grown to <strong>12,000+ servers</strong> worldwide. Rather than list them all, this directory curates the connectors that matter most for business teams &mdash; prioritizing official Anthropic releases, named-company partnerships, and community servers with documented provenance and active maintenance.</p>
+    <p>Every entry on this page has been reviewed for authorship, documentation quality, and practical business relevance. For the full universe of MCP servers, see the <strong>Ecosystem Dashboard</strong> below, which links directly to the major registries.</p>
+    <div class="trust-legend">
+      <div class="trust-legend-item"><span class="card-badge badge-official">Official</span> Maintained by Anthropic</div>
+      <div class="trust-legend-item"><span class="card-badge badge-partner">Partner</span> Built by the named company</div>
+      <div class="trust-legend-item"><span class="card-badge badge-community">Vetted</span> Community server with clear provenance</div>
+    </div>
+  </section>
+
+  <!-- ══════════ TRUST METHODOLOGY ══════════ -->
+  <section class="trust-methodology">
+    <h3>How We Score Trust</h3>
+    <p>Each connector receives a composite trust score based on verifiable, public signals. This is not a quality rating &mdash; it reflects adoption momentum, maintenance health, and provenance transparency.</p>
+    <div class="scoring-grid">
+      <div class="score-item"><strong>Provenance</strong><br>Official, named-company, or documented author</div>
+      <div class="score-item"><strong>GitHub Stars</strong><br>Community interest and peer validation</div>
+      <div class="score-item"><strong>npm / Registry Downloads</strong><br>Actual installation volume</div>
+      <div class="score-item"><strong>Maintenance</strong><br>Recency of last update and commit activity</div>
+      <div class="score-item"><strong>Documentation</strong><br>Completeness of README, docs, and setup guides</div>
+      <div class="score-item"><strong>Smithery Usage</strong><br>Active usage count on Smithery registry</div>
+    </div>
+  </section>
+
+  <!-- ══════════ ECOSYSTEM DASHBOARD ══════════ -->
+  <section class="ecosystem-dashboard">
+    <div class="eco-top">
+      <h2>MCP Ecosystem Dashboard</h2>
+      <span class="eco-updated">Data as of Feb 2026</span>
+    </div>
+    <div class="eco-stats">
+      <div class="eco-card"><span class="eco-stat" id="curatedCount">0</span><span class="eco-label">Curated Here</span></div>
+      <div class="eco-card"><span class="eco-stat">12,000+</span><span class="eco-label">Total MCP Servers</span></div>
+      <div class="eco-card"><span class="eco-stat">8,600+</span><span class="eco-label">On PulseMCP</span></div>
+      <div class="eco-card"><span class="eco-stat">3,600+</span><span class="eco-label">On Smithery</span></div>
+      <div class="eco-card"><span class="eco-stat">5</span><span class="eco-label">Official SDKs</span></div>
+      <div class="eco-card"><span class="eco-stat" id="catCount">0</span><span class="eco-label">Categories</span></div>
+    </div>
+    <h3 style="font-size:0.88rem; font-weight:600; color:var(--primary); margin-bottom:0.6rem;">Explore the Full Universe</h3>
+    <div class="eco-registries">
+      <a href="https://www.pulsemcp.com/servers" target="_blank" rel="noopener nofollow" class="eco-registry-card">
+        <span class="eco-r-icon">&#127760;</span>
+        <div>
+          <div class="eco-r-name">PulseMCP</div>
+          <div class="eco-r-desc">The largest MCP directory with daily updates, categories, and usage analytics.</div>
+          <div class="eco-r-count">8,600+ servers indexed</div>
+        </div>
+      </a>
+      <a href="https://smithery.ai" target="_blank" rel="noopener nofollow" class="eco-registry-card">
+        <span class="eco-r-icon">&#9878;&#65039;</span>
+        <div>
+          <div class="eco-r-name">Smithery</div>
+          <div class="eco-r-desc">Curated registry with one-click installation guides and verified publishers.</div>
+          <div class="eco-r-count">3,600+ servers listed</div>
+        </div>
+      </a>
+      <a href="https://github.com/modelcontextprotocol/servers" target="_blank" rel="noopener nofollow" class="eco-registry-card">
+        <span class="eco-r-icon">&#128187;</span>
+        <div>
+          <div class="eco-r-name">Official GitHub Repository</div>
+          <div class="eco-r-desc">Anthropic's reference implementations and the canonical MCP server source code.</div>
+          <div class="eco-r-count">7 active + 13 archived servers</div>
+        </div>
+      </a>
+      <a href="https://github.com/wong2/awesome-mcp-servers" target="_blank" rel="noopener nofollow" class="eco-registry-card">
+        <span class="eco-r-icon">&#11088;</span>
+        <div>
+          <div class="eco-r-name">Awesome MCP Servers</div>
+          <div class="eco-r-desc">Community-curated GitHub list organized by category with star counts and freshness.</div>
+          <div class="eco-r-count">500+ categorized entries</div>
+        </div>
+      </a>
+      <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener nofollow" class="eco-registry-card">
+        <span class="eco-r-icon">&#128220;</span>
+        <div>
+          <div class="eco-r-name">MCP Specification</div>
+          <div class="eco-r-desc">The official protocol specification, SDK documentation, and developer guides.</div>
+          <div class="eco-r-count">Open standard &middot; JSON-RPC 2.0</div>
+        </div>
+      </a>
+      <a href="https://mcp.so" target="_blank" rel="noopener nofollow" class="eco-registry-card">
+        <span class="eco-r-icon">&#128269;</span>
+        <div>
+          <div class="eco-r-name">MCP.so</div>
+          <div class="eco-r-desc">Search-friendly directory with detailed server profiles, install guides, and ratings.</div>
+          <div class="eco-r-count">Growing directory</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════ HOW TO INSTALL ══════════ -->
+  <section class="howto-section">
+    <h2>How to Install MCP Connectors</h2>
+    <p>The <strong>Model Context Protocol (MCP)</strong> is an open standard by Anthropic that gives Claude a unified way to connect to external tools, databases, and services. Servers communicate via JSON-RPC 2.0 and expose tools (actions), resources (data), and prompts (templates).</p>
+    <div class="howto-grid">
+      <div class="intro-card">
+        <h3>Claude Desktop (Recommended)</h3>
+        <p>Settings &rarr; Extensions &rarr; Browse extensions. One-click install for Anthropic-reviewed connectors.</p>
+      </div>
+      <div class="intro-card">
+        <h3>Manual Configuration</h3>
+        <p>Add to your config file:</p>
+        <pre>{
+  "mcpServers": {
+    "server-name": {
+      "command": "npx",
+      "args": ["-y", "@scope/server"],
+      "env": { "API_KEY": "..." }
+    }
+  }
+}</pre>
+      </div>
+      <div class="intro-card">
+        <h3>Config File Locations</h3>
+        <p><strong>macOS:</strong><br><code>~/Library/Application Support/Claude/claude_desktop_config.json</code></p>
+        <p style="margin-top:0.4rem"><strong>Windows:</strong><br><code>%APPDATA%\Claude\claude_desktop_config.json</code></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ TOC ══════════ -->
+  <nav class="toc" id="toc">
+    <h3>Jump to Category</h3>
+    <div class="toc-grid" id="tocGrid"></div>
+  </nav>
+
+  <!-- ══════════ CONNECTORS ══════════ -->
+  <main id="mainContent"></main>
+  <div class="no-results" id="noResults">
+    <p style="font-size:1.5rem; margin-bottom:0.3rem;">No connectors match your search</p>
+    <p>Try a different keyword or clear the filter.</p>
+  </div>
+
+  <!-- ══════════ LEGAL DISCLAIMER ══════════ -->
+  <section class="legal-disclaimer">
+    <h3>Disclaimer &amp; Community Notice</h3>
+    <p>This directory is a free community resource provided by AIWhisperer.org and ePraxis LLC. We have no financial interest in, nor do we receive any compensation from, any company or product listed herein.</p>
+    <p><strong>No Warranty:</strong> This directory is provided on an &ldquo;as-is&rdquo; and &ldquo;as-available&rdquo; basis. We make no claims of fitness for a particular purpose, nor do we warrant that any MCP connector listed will function correctly in your specific environment. Inclusion does not constitute an endorsement, guarantee, or verification of safety.</p>
+    <p><strong>Limitation of Liability:</strong> In no event shall Severin Sorensen, AIWhisperer.org, or ePraxis LLC be liable for any loss of data, security breaches, or financial damages resulting from your use of these third-party tools.</p>
+    <p><strong>Due Diligence:</strong> We encourage you to explore these connectors with curiosity, but you are solely responsible for verifying security, licensing, and compatibility with your IT team before deployment.</p>
+    <p><strong>Trademarks:</strong> MCP is an open standard by Anthropic. This directory is an independent editorial project and is not affiliated with, sponsored by, or endorsed by Anthropic, Inc.</p>
+  </section>
+
+</div>
+
+<button class="back-to-top" id="backToTop" title="Back to top">&uarr;</button>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>&copy; Copyright Severin Sorensen. All rights reserved.</p>
+    <p style="margin-top:0.3rem;">Published by <a href="https://aiwhisperer.org">AIWhisperer.org</a> under license with <a href="https://epraxis.com">ePraxis LLC</a>.</p>
+    <div class="footer-links">
+      <a href="https://modelcontextprotocol.io" rel="nofollow">MCP Spec</a>
+      <a href="https://github.com/modelcontextprotocol/servers" rel="nofollow">GitHub</a>
+      <a href="https://smithery.ai" rel="nofollow">Smithery</a>
+      <a href="https://www.pulsemcp.com/servers" rel="nofollow">PulseMCP</a>
+      <a href="https://epraxis.com">ePraxis</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════
+// CURATED CONNECTOR DATA
+// Trust tiers: official = Anthropic, partner = named company, community = vetted provenance
+// ═══════════════════════════════════════════════════
+const connectors = [
+
+  // ────────────────────────────────────────────
+  // OFFICIAL REFERENCE SERVERS (Anthropic)
+  // ────────────────────────────────────────────
+  { name: "Filesystem", category: "Official Reference Servers", icon: "\uD83D\uDCC1",
+    desc: "Secure file operations with configurable access controls. Read, write, move, and search files within allowed directories.",
+    author: "Anthropic", version: "2026.1.26", updated: "2026-01-27", badge: "official",
+    install: "npx -y @modelcontextprotocol/server-filesystem /path/to/allowed",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+    npm: "https://www.npmjs.com/package/@modelcontextprotocol/server-filesystem" },
+  { name: "Git", category: "Official Reference Servers", icon: "\uD83D\uDCC1",
+    desc: "Read, search, and manipulate Git repositories. Supports log, diff, status, branch listing, and file history.",
+    author: "Anthropic", version: "2026.1.26", updated: "2026-01-27", badge: "official",
+    install: "npx -y @modelcontextprotocol/server-git",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/git",
+    npm: "https://www.npmjs.com/package/@modelcontextprotocol/server-git" },
+  { name: "Fetch", category: "Official Reference Servers", icon: "\uD83D\uDCC1",
+    desc: "Fetch web content and convert it to Markdown optimized for LLM consumption.",
+    author: "Anthropic", version: "2026.1.26", updated: "2026-01-27", badge: "official",
+    install: "npx -y @modelcontextprotocol/server-fetch",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch",
+    npm: "https://www.npmjs.com/package/@modelcontextprotocol/server-fetch" },
+  { name: "Memory", category: "Official Reference Servers", icon: "\uD83D\uDCC1",
+    desc: "Knowledge graph-based persistent memory. Create entities, relations, and observations that persist across sessions.",
+    author: "Anthropic", version: "2026.1.26", updated: "2026-01-27", badge: "official",
+    install: "npx -y @modelcontextprotocol/server-memory",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
+    npm: "https://www.npmjs.com/package/@modelcontextprotocol/server-memory" },
+  { name: "Sequential Thinking", category: "Official Reference Servers", icon: "\uD83D\uDCC1",
+    desc: "Dynamic, reflective problem-solving through structured thought sequences with branching and revision.",
+    author: "Anthropic", version: "2026.1.26", updated: "2026-01-27", badge: "official",
+    install: "npx -y @modelcontextprotocol/server-sequential-thinking",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking",
+    npm: "https://www.npmjs.com/package/@modelcontextprotocol/server-sequential-thinking" },
+  { name: "Time", category: "Official Reference Servers", icon: "\uD83D\uDCC1",
+    desc: "Get current time and perform timezone conversions for scheduling and time-aware operations.",
+    author: "Anthropic", version: "2026.1.26", updated: "2026-01-27", badge: "official",
+    install: "npx -y @modelcontextprotocol/server-time",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/time",
+    npm: "https://www.npmjs.com/package/@modelcontextprotocol/server-time" },
+  { name: "Everything", category: "Official Reference Servers", icon: "\uD83D\uDCC1",
+    desc: "Test and demo server exercising all MCP capabilities: resources, tools, prompts, sampling, and logging.",
+    author: "Anthropic", version: "2026.1.26", updated: "2026-01-27", badge: "official",
+    install: "npx -y @modelcontextprotocol/server-everything",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/everything",
+    npm: "https://www.npmjs.com/package/@modelcontextprotocol/server-everything" },
+
+  // ────────────────────────────────────────────
+  // DEVELOPMENT & VERSION CONTROL
+  // ────────────────────────────────────────────
+  { name: "GitHub", category: "Development & DevOps", icon: "\uD83D\uDCBB",
+    desc: "Official GitHub MCP server. Manage repos, issues, PRs, branches, code search, and GitHub Actions workflows.",
+    author: "GitHub / Microsoft", version: "0.2.0", updated: "2025-04", badge: "partner",
+    install: "npx -y @modelcontextprotocol/server-github",
+    repo: "https://github.com/github/github-mcp-server",
+    docs: "https://github.com/github/github-mcp-server#readme" },
+  { name: "GitLab", category: "Development & DevOps", icon: "\uD83D\uDCBB",
+    desc: "Interact with GitLab repos, merge requests, issues, CI/CD pipelines, and project settings.",
+    author: "Anthropic (archived)", version: "0.6.2", updated: "2025-01", badge: "community",
+    install: "npx -y @modelcontextprotocol/server-gitlab",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/gitlab" },
+  { name: "Sentry", category: "Development & DevOps", icon: "\uD83D\uDCBB",
+    desc: "Retrieve and analyze error reports, stack traces, and performance data from Sentry.",
+    author: "Anthropic (archived)", version: "0.6.2", updated: "2025-01", badge: "community",
+    install: "npx -y @modelcontextprotocol/server-sentry",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/sentry" },
+  { name: "Puppeteer", category: "Development & DevOps", icon: "\uD83D\uDCBB",
+    desc: "Browser automation for testing, scraping, and interaction. Navigate pages, fill forms, take screenshots.",
+    author: "Anthropic (archived)", version: "0.6.2", updated: "2025-01", badge: "community",
+    install: "npx -y @modelcontextprotocol/server-puppeteer",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer" },
+  { name: "Docker", category: "Development & DevOps", icon: "\uD83D\uDCBB",
+    desc: "Manage Docker containers, images, volumes, and networks. Start, stop, and inspect containers.",
+    author: "Docker Inc.", version: "0.1.0", updated: "2025-03", badge: "partner",
+    install: "docker run -i --rm docker/mcp-server",
+    repo: "https://github.com/docker/docker-mcp" },
+  { name: "Vercel", category: "Development & DevOps", icon: "\uD83D\uDCBB",
+    desc: "Manage Vercel deployments, projects, domains, and environment variables.",
+    author: "Vercel Community", version: "1.2.0", updated: "2025-06", badge: "community",
+    install: "npx -y vercel-mcp-server",
+    repo: "https://github.com/vercel/vercel-mcp" },
+  { name: "Cloudflare", category: "Development & DevOps", icon: "\uD83D\uDCBB",
+    desc: "Manage Cloudflare Workers, KV, R2, D1 databases, and DNS settings.",
+    author: "Cloudflare", version: "0.3.0", updated: "2025-04", badge: "partner",
+    install: "npx -y @cloudflare/mcp-server",
+    repo: "https://github.com/cloudflare/mcp-server-cloudflare" },
+  { name: "Terraform", category: "Development & DevOps", icon: "\uD83D\uDCBB",
+    desc: "Plan, apply, and manage Terraform infrastructure-as-code configurations.",
+    author: "HashiCorp Community", version: "0.2.0", updated: "2025-03", badge: "community",
+    install: "npx -y terraform-mcp-server",
+    repo: "https://github.com/hashicorp/terraform-mcp-server" },
+  { name: "Azure DevOps", category: "Development & DevOps", icon: "\uD83D\uDCBB",
+    desc: "Manage Azure DevOps repos, pipelines, work items, and project boards.",
+    author: "Microsoft", version: "0.1.0", updated: "2025-04", badge: "partner",
+    install: "npx -y azure-devops-mcp-server",
+    repo: "https://github.com/microsoft/azure-devops-mcp" },
+  { name: "CircleCI", category: "Development & DevOps", icon: "\uD83D\uDCBB",
+    desc: "Enable AI agents to diagnose and fix CI/CD build failures from CircleCI.",
+    author: "CircleCI", version: "0.1.0", updated: "2025-03", badge: "partner",
+    install: "npx -y circleci-mcp-server",
+    repo: "https://github.com/circleci/circleci-mcp" },
+  { name: "Buildkite", category: "Development & DevOps", icon: "\uD83D\uDCBB",
+    desc: "Manage Buildkite CI/CD pipelines, builds, and test analytics.",
+    author: "Buildkite", version: "0.1.0", updated: "2025-03", badge: "partner",
+    install: "npx -y buildkite-mcp-server",
+    repo: "https://github.com/buildkite/buildkite-mcp" },
+  { name: "dbt", category: "Development & DevOps", icon: "\uD83D\uDCBB",
+    desc: "Official dbt Labs server for data transformation workflows, model management, and Core/Cloud CLI.",
+    author: "dbt Labs", version: "0.1.0", updated: "2025-04", badge: "partner",
+    install: "npx -y dbt-mcp-server",
+    repo: "https://github.com/dbt-labs/dbt-mcp" },
+  { name: "JetBrains", category: "Development & DevOps", icon: "\uD83D\uDCBB",
+    desc: "Interact with JetBrains IDEs for code navigation, refactoring, and project management.",
+    author: "JetBrains", version: "0.1.0", updated: "2025-04", badge: "partner",
+    install: "npx -y jetbrains-mcp-server",
+    repo: "https://github.com/JetBrains/jetbrains-mcp" },
+
+  // ────────────────────────────────────────────
+  // DATABASES & DATA WAREHOUSES
+  // ────────────────────────────────────────────
+  { name: "PostgreSQL", category: "Databases & Data", icon: "\uD83D\uDDC4",
+    desc: "Execute queries, inspect schemas, list tables, and analyze PostgreSQL data.",
+    author: "Anthropic (archived)", version: "0.6.2", updated: "2025-01", badge: "community",
+    install: "npx -y @modelcontextprotocol/server-postgres postgresql://...",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/postgres" },
+  { name: "SQLite", category: "Databases & Data", icon: "\uD83D\uDDC4",
+    desc: "Query and manage local SQLite database files with full SQL support.",
+    author: "Anthropic (archived)", version: "0.6.2", updated: "2025-01", badge: "community",
+    install: "npx -y @modelcontextprotocol/server-sqlite /path/to/db.sqlite",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite" },
+  { name: "MongoDB", category: "Databases & Data", icon: "\uD83D\uDDC4",
+    desc: "Query and manage MongoDB document databases. CRUD, aggregations, and collection management.",
+    author: "MongoDB Inc.", version: "0.1.2", updated: "2025-04", badge: "partner",
+    install: "npx -y mongodb-mcp-server",
+    repo: "https://github.com/mongodb-js/mongodb-mcp-server" },
+  { name: "MySQL", category: "Databases & Data", icon: "\uD83D\uDDC4",
+    desc: "Connect to MySQL/MariaDB databases for querying, schema inspection, and data manipulation.",
+    author: "Community", version: "0.4.1", updated: "2025-05", badge: "community",
+    install: "npx -y mysql-mcp-server",
+    repo: "https://github.com/nicholasgriffintn/mysql-mcp-server" },
+  { name: "Redis", category: "Databases & Data", icon: "\uD83D\uDDC4",
+    desc: "Interact with Redis in-memory data store. Get/set keys, manage data structures, execute commands.",
+    author: "Anthropic (archived)", version: "0.6.2", updated: "2025-01", badge: "community",
+    install: "npx -y @modelcontextprotocol/server-redis redis://...",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/redis" },
+  { name: "Supabase", category: "Databases & Data", icon: "\uD83D\uDDC4",
+    desc: "Database queries, auth management, storage, and edge functions for Supabase projects.",
+    author: "Supabase", version: "1.0.0", updated: "2025-06", badge: "partner",
+    install: "npx -y @supabase/mcp-server",
+    repo: "https://github.com/supabase/mcp-server" },
+  { name: "Snowflake", category: "Databases & Data", icon: "\uD83D\uDDC4",
+    desc: "Execute SQL, explore schemas, and analyze Snowflake cloud data warehouse content.",
+    author: "Community", version: "0.3.0", updated: "2025-05", badge: "community",
+    install: "npx -y snowflake-mcp-server",
+    repo: "https://github.com/isaacwasserman/snowflake-mcp-server" },
+  { name: "BigQuery", category: "Databases & Data", icon: "\uD83D\uDDC4",
+    desc: "Run SQL queries, explore tables, and analyze Google BigQuery datasets at scale.",
+    author: "Community", version: "0.2.0", updated: "2025-04", badge: "community",
+    install: "npx -y bigquery-mcp-server",
+    repo: "https://github.com/ergut/mcp-bigquery-server" },
+  { name: "Airtable", category: "Databases & Data", icon: "\uD83D\uDDC4",
+    desc: "Access Airtable bases, tables, and records. Create, read, update, and query structured data.",
+    author: "Community", version: "0.3.1", updated: "2025-03", badge: "community",
+    install: "npx -y airtable-mcp-server",
+    repo: "https://github.com/felores/airtable-mcp" },
+  { name: "ClickHouse", category: "Databases & Data", icon: "\uD83D\uDDC4",
+    desc: "Query ClickHouse OLAP databases for real-time analytics and high-performance data analysis.",
+    author: "ClickHouse", version: "0.1.0", updated: "2025-03", badge: "partner",
+    install: "npx -y clickhouse-mcp-server",
+    repo: "https://github.com/ClickHouse/clickhouse-mcp" },
+  { name: "Chroma", category: "Databases & Data", icon: "\uD83D\uDDC4",
+    desc: "Embeddings, vector search, and document storage with the open-source Chroma vector database.",
+    author: "Chroma", version: "0.1.0", updated: "2025-03", badge: "community",
+    install: "npx -y chroma-mcp-server",
+    repo: "https://github.com/chroma-core/chroma-mcp" },
+
+  // ────────────────────────────────────────────
+  // COMMUNICATION & COLLABORATION
+  // ────────────────────────────────────────────
+  { name: "Slack", category: "Communication & Collaboration", icon: "\uD83D\uDCAC",
+    desc: "Read and send Slack messages, manage channels, and search workspace conversations.",
+    author: "Anthropic (archived)", version: "0.6.2", updated: "2025-01", badge: "community",
+    install: "npx -y @modelcontextprotocol/server-slack",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/slack" },
+  { name: "Microsoft 365", category: "Communication & Collaboration", icon: "\uD83D\uDCAC",
+    desc: "Access Outlook, OneDrive, Teams, SharePoint, and Office documents via official Anthropic connector.",
+    author: "Anthropic / Microsoft", version: "1.0.0", updated: "2025-06", badge: "partner",
+    install: "Available via Claude Desktop Extensions",
+    docs: "https://claude.com/partners/mcp" },
+  { name: "Gmail & Google Workspace", category: "Communication & Collaboration", icon: "\uD83D\uDCAC",
+    desc: "Access Gmail, Google Drive, Calendar, Docs, Sheets, and Slides through a unified interface.",
+    author: "Community", version: "0.5.0", updated: "2025-05", badge: "community",
+    install: "npx -y google-workspace-mcp-server",
+    repo: "https://github.com/nicholasgriffintn/google-workspace-mcp" },
+  { name: "Twilio", category: "Communication & Collaboration", icon: "\uD83D\uDCAC",
+    desc: "Send SMS, make calls, and manage Twilio messaging services and phone numbers.",
+    author: "Twilio Labs", version: "0.2.1", updated: "2025-03", badge: "community",
+    install: "npx -y twilio-mcp-server",
+    repo: "https://github.com/twilio-labs/mcp-server" },
+  { name: "SendGrid", category: "Communication & Collaboration", icon: "\uD83D\uDCAC",
+    desc: "Send transactional and marketing emails. Manage contacts, templates, and delivery analytics.",
+    author: "Community", version: "0.1.5", updated: "2025-02", badge: "community",
+    install: "npx -y sendgrid-mcp-server",
+    repo: "https://github.com/sendgrid/sendgrid-mcp" },
+  { name: "ElevenLabs", category: "Communication & Collaboration", icon: "\uD83D\uDCAC",
+    desc: "Official ElevenLabs server for text-to-speech generation, voice cloning, and audio AI.",
+    author: "ElevenLabs", version: "0.1.0", updated: "2025-04", badge: "partner",
+    install: "npx -y elevenlabs-mcp-server",
+    repo: "https://github.com/elevenlabs/elevenlabs-mcp" },
+
+  // ────────────────────────────────────────────
+  // PROJECT MANAGEMENT
+  // ────────────────────────────────────────────
+  { name: "Notion", category: "Project Management", icon: "\uD83D\uDCCB",
+    desc: "Official Notion MCP. Search, read, create, and update pages, databases, and blocks in Notion.",
+    author: "Notion", version: "1.0.0", updated: "2025-05", badge: "partner",
+    install: "npx -y @notion/mcp-server",
+    repo: "https://github.com/notion/notion-mcp-server",
+    docs: "https://developers.notion.com/docs/mcp" },
+  { name: "Linear", category: "Project Management", icon: "\uD83D\uDCCB",
+    desc: "Create, update, and search Linear issues, projects, and cycles. Track development progress.",
+    author: "Linear", version: "1.0.0", updated: "2025-05", badge: "partner",
+    install: "npx -y @linear/mcp-server",
+    repo: "https://github.com/linear/linear-mcp-server",
+    docs: "https://linear.app/docs/mcp" },
+  { name: "Jira & Confluence", category: "Project Management", icon: "\uD83D\uDCCB",
+    desc: "Official Atlassian MCP. Search and manage Jira issues, access Confluence pages and spaces.",
+    author: "Atlassian", version: "0.3.0", updated: "2025-05", badge: "partner",
+    install: "npx -y @atlassian/mcp-server",
+    repo: "https://github.com/atlassian/atlassian-mcp-server" },
+  { name: "Asana", category: "Project Management", icon: "\uD83D\uDCCB",
+    desc: "Access Asana tasks, projects, and workspaces. Create and update tasks, track team progress.",
+    author: "Community", version: "0.2.3", updated: "2025-04", badge: "community",
+    install: "npx -y asana-mcp-server",
+    repo: "https://github.com/roychri/mcp-server-asana" },
+
+  // ────────────────────────────────────────────
+  // SEARCH & WEB
+  // ────────────────────────────────────────────
+  { name: "Brave Search", category: "Search & Web", icon: "\uD83D\uDD0D",
+    desc: "Privacy-focused web and local search via the Brave Search API with news and image support.",
+    author: "Anthropic (archived)", version: "0.6.2", updated: "2025-01", badge: "community",
+    install: "npx -y @modelcontextprotocol/server-brave-search",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search" },
+  { name: "Exa Search", category: "Search & Web", icon: "\uD83D\uDD0D",
+    desc: "AI-native semantic search engine. Find specific content across the web with natural language.",
+    author: "Exa AI", version: "1.0.0", updated: "2025-05", badge: "partner",
+    install: "npx -y exa-mcp-server",
+    repo: "https://github.com/exa-labs/exa-mcp-server" },
+  { name: "Google Maps", category: "Search & Web", icon: "\uD83D\uDD0D",
+    desc: "Geocoding, directions, place search, and distance calculations via Google Maps Platform.",
+    author: "Anthropic (archived)", version: "0.6.2", updated: "2025-01", badge: "community",
+    install: "npx -y @modelcontextprotocol/server-google-maps",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/google-maps" },
+  { name: "Firecrawl", category: "Search & Web", icon: "\uD83D\uDD0D",
+    desc: "Crawl websites and extract structured data at scale for AI-ready content ingestion.",
+    author: "Firecrawl", version: "1.0.0", updated: "2025-05", badge: "partner",
+    install: "npx -y firecrawl-mcp-server",
+    repo: "https://github.com/mendableai/firecrawl-mcp-server" },
+  { name: "Apify", category: "Search & Web", icon: "\uD83D\uDD0D",
+    desc: "Access 3,000+ pre-built web scraping and automation tools on Apify's cloud platform.",
+    author: "Apify", version: "0.1.0", updated: "2025-04", badge: "partner",
+    install: "npx -y apify-mcp-server",
+    repo: "https://github.com/apify/actors-mcp-server" },
+
+  // ────────────────────────────────────────────
+  // CLOUD & INFRASTRUCTURE
+  // ────────────────────────────────────────────
+  { name: "AWS Knowledge Base", category: "Cloud & Infrastructure", icon: "\u2601\uFE0F",
+    desc: "Retrieve AWS documentation, best practices, and knowledge base recommendations.",
+    author: "Anthropic (archived)", version: "0.6.2", updated: "2025-01", badge: "community",
+    install: "npx -y @modelcontextprotocol/server-aws-kb-retrieval",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/aws-kb-retrieval-server" },
+  { name: "AWS Documentation", category: "Cloud & Infrastructure", icon: "\u2601\uFE0F",
+    desc: "Fetch, convert, and search AWS documentation pages for development guidance.",
+    author: "AWS", version: "0.1.0", updated: "2025-04", badge: "partner",
+    install: "npx -y aws-docs-mcp-server",
+    repo: "https://github.com/awslabs/mcp" },
+  { name: "Google Cloud Run", category: "Cloud & Infrastructure", icon: "\u2601\uFE0F",
+    desc: "Official Google MCP server to deploy and manage applications on Cloud Run.",
+    author: "Google", version: "0.1.0", updated: "2025-05", badge: "partner",
+    install: "npx -y google-cloud-run-mcp-server",
+    repo: "https://github.com/GoogleCloudPlatform/cloud-run-mcp" },
+
+  // ────────────────────────────────────────────
+  // MONITORING & OBSERVABILITY
+  // ────────────────────────────────────────────
+  { name: "Datadog", category: "Monitoring & Observability", icon: "\uD83D\uDCCA",
+    desc: "Query Datadog metrics, logs, traces, and dashboards. Analyze application and infrastructure health.",
+    author: "Datadog", version: "0.2.0", updated: "2025-04", badge: "partner",
+    install: "npx -y datadog-mcp-server",
+    repo: "https://github.com/DataDog/datadog-mcp-server" },
+  { name: "Grafana", category: "Monitoring & Observability", icon: "\uD83D\uDCCA",
+    desc: "Search dashboards, query data sources, and manage incidents in Grafana.",
+    author: "Grafana Labs", version: "0.1.0", updated: "2025-04", badge: "partner",
+    install: "npx -y grafana-mcp-server",
+    repo: "https://github.com/grafana/mcp-grafana" },
+  { name: "PagerDuty", category: "Monitoring & Observability", icon: "\uD83D\uDCCA",
+    desc: "Manage PagerDuty incidents, schedules, and escalation policies.",
+    author: "Community", version: "0.1.3", updated: "2025-03", badge: "community",
+    install: "npx -y pagerduty-mcp-server",
+    repo: "https://github.com/pagerduty/pagerduty-mcp" },
+
+  // ────────────────────────────────────────────
+  // CRM & SALES
+  // ────────────────────────────────────────────
+  { name: "Salesforce", category: "CRM & Sales", icon: "\uD83D\uDCBC",
+    desc: "Query Salesforce objects, manage records, execute SOQL. Access accounts, contacts, and opportunities.",
+    author: "Salesforce", version: "0.3.0", updated: "2025-05", badge: "partner",
+    install: "npx -y salesforce-mcp-server",
+    repo: "https://github.com/salesforce/salesforce-mcp" },
+  { name: "HubSpot", category: "CRM & Sales", icon: "\uD83D\uDCBC",
+    desc: "Access HubSpot CRM contacts, companies, deals, tickets, and marketing automation.",
+    author: "Community", version: "0.2.5", updated: "2025-04", badge: "community",
+    install: "npx -y hubspot-mcp-server",
+    repo: "https://github.com/hubspot/hubspot-mcp" },
+
+  // ────────────────────────────────────────────
+  // E-COMMERCE & PAYMENTS
+  // ────────────────────────────────────────────
+  { name: "Stripe", category: "E-Commerce & Payments", icon: "\uD83D\uDCB3",
+    desc: "Manage customers, payments, subscriptions, invoices, and payment methods via the Stripe API.",
+    author: "Stripe", version: "0.3.0", updated: "2025-04", badge: "partner",
+    install: "npx -y @stripe/mcp-server",
+    repo: "https://github.com/stripe/agent-toolkit" },
+  { name: "Shopify", category: "E-Commerce & Payments", icon: "\uD83D\uDCB3",
+    desc: "Manage Shopify stores, products, orders, customers, and inventory.",
+    author: "Shopify", version: "0.2.0", updated: "2025-04", badge: "partner",
+    install: "npx -y shopify-mcp-server",
+    repo: "https://github.com/shopify/shopify-mcp" },
+
+  // ────────────────────────────────────────────
+  // PRODUCTIVITY & STORAGE
+  // ────────────────────────────────────────────
+  { name: "Google Drive", category: "Productivity & Storage", icon: "\uD83D\uDCC2",
+    desc: "Search, read, create, and organize files and folders in Google Drive.",
+    author: "Anthropic (archived)", version: "0.6.2", updated: "2025-01", badge: "community",
+    install: "npx -y @modelcontextprotocol/server-gdrive",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/gdrive" },
+  { name: "Miro", category: "Productivity & Storage", icon: "\uD83D\uDCC2",
+    desc: "Interact with Miro boards for collaborative whiteboarding, sticky notes, and connections.",
+    author: "Community", version: "0.1.2", updated: "2025-03", badge: "community",
+    install: "npx -y miro-mcp-server",
+    repo: "https://github.com/miroapp/miro-mcp" },
+
+  // ────────────────────────────────────────────
+  // AUTOMATION & INTEGRATION
+  // ────────────────────────────────────────────
+  { name: "Zapier", category: "Automation & Integration", icon: "\u26A1",
+    desc: "Connect to 8,000+ apps through Zapier's automation platform. Trigger zaps and bridge services.",
+    author: "Zapier", version: "1.0.0", updated: "2025-05", badge: "partner",
+    install: "Available via Zapier MCP integration",
+    docs: "https://zapier.com/mcp" },
+  { name: "Make (Integromat)", category: "Automation & Integration", icon: "\u26A1",
+    desc: "Turn Make scenarios into callable tools for AI assistants with visual workflow automation.",
+    author: "Make", version: "0.1.0", updated: "2025-04", badge: "partner",
+    install: "npx -y make-mcp-server",
+    repo: "https://github.com/integromat/make-mcp-server" },
+  { name: "Composio", category: "Automation & Integration", icon: "\u26A1",
+    desc: "Universal access to 500+ applications with managed authentication and unified API.",
+    author: "Composio", version: "1.0.0", updated: "2025-05", badge: "partner",
+    install: "npx -y composio-mcp-server",
+    repo: "https://github.com/composioHQ/composio-mcp" },
+  { name: "Home Assistant", category: "Automation & Integration", icon: "\u26A1",
+    desc: "Control smart home devices: lights, switches, sensors, climate, and automation routines.",
+    author: "Community", version: "0.3.0", updated: "2025-04", badge: "community",
+    install: "npx -y home-assistant-mcp-server",
+    repo: "https://github.com/home-assistant/mcp-server" },
+
+  // ────────────────────────────────────────────
+  // AI & CREATIVE TOOLS
+  // ────────────────────────────────────────────
+  { name: "EverArt", category: "AI & Creative Tools", icon: "\uD83C\uDFA8",
+    desc: "Generate AI artwork and manage image generation models and custom pipelines.",
+    author: "Anthropic (archived)", version: "0.6.2", updated: "2025-01", badge: "community",
+    install: "npx -y @modelcontextprotocol/server-everart",
+    repo: "https://github.com/modelcontextprotocol/servers/tree/main/src/everart" },
+  { name: "Replicate", category: "AI & Creative Tools", icon: "\uD83C\uDFA8",
+    desc: "Run ML models on Replicate's cloud: image generation, language, video, and audio models.",
+    author: "Community", version: "0.2.0", updated: "2025-04", badge: "community",
+    install: "npx -y replicate-mcp-server",
+    repo: "https://github.com/replicate/replicate-mcp" },
+
+  // ────────────────────────────────────────────
+  // FINANCE & DATA SERVICES
+  // ────────────────────────────────────────────
+  { name: "CoinGecko", category: "Finance & Data Services", icon: "\uD83D\uDCC8",
+    desc: "Official CoinGecko API server for cryptocurrency prices, market data, and token analytics.",
+    author: "CoinGecko", version: "0.1.0", updated: "2025-04", badge: "partner",
+    install: "npx -y coingecko-mcp-server",
+    repo: "https://github.com/coingecko/coingecko-mcp" },
+  { name: "Financial Datasets", category: "Finance & Data Services", icon: "\uD83D\uDCC8",
+    desc: "Stock market API for AI agents: fundamentals, prices, SEC filings, and financial statements.",
+    author: "Financial Datasets", version: "0.1.0", updated: "2025-03", badge: "community",
+    install: "npx -y financial-datasets-mcp-server",
+    repo: "https://github.com/financial-datasets/financial-datasets-mcp" },
+];
+
+// ═══════════════════════════════════════════════════
+// TRUST SIGNALS DATA
+// Stars = GitHub stars (repo or parent mono-repo), Downloads = npm weekly range,
+// Smithery = usage count on smithery.ai, Score = composite 1-10
+// ═══════════════════════════════════════════════════
+var trustData = {
+  // Official (all share the 79.6k-star mono-repo)
+  "Filesystem":           { stars: "79.6k", downloads: "High",   smithery: null,    score: 10 },
+  "Git":                  { stars: "79.6k", downloads: "High",   smithery: null,    score: 10 },
+  "Fetch":                { stars: "79.6k", downloads: "High",   smithery: null,    score: 10 },
+  "Memory":               { stars: "79.6k", downloads: "High",   smithery: null,    score: 10 },
+  "Sequential Thinking":  { stars: "79.6k", downloads: "High",   smithery: "5.5k",  score: 10 },
+  "Time":                 { stars: "79.6k", downloads: "High",   smithery: null,    score: 10 },
+  "Everything":           { stars: "79.6k", downloads: "Moderate", smithery: null,  score: 9 },
+  // Dev & DevOps
+  "GitHub":               { stars: "26k",   downloads: "High",   smithery: "2.1k",  score: 10 },
+  "GitLab":               { stars: "79.6k", downloads: "Moderate", smithery: "380",  score: 8 },
+  "Sentry":               { stars: "79.6k", downloads: "Moderate", smithery: "250",  score: 8 },
+  "Puppeteer":            { stars: "79.6k", downloads: "High",   smithery: "1.2k",  score: 9 },
+  "Docker":               { stars: "1.8k",  downloads: "High",   smithery: "900",   score: 9 },
+  "Vercel":               { stars: "500+",  downloads: "Moderate", smithery: null,   score: 7 },
+  "Cloudflare":           { stars: "1.5k",  downloads: "Moderate", smithery: "450",  score: 9 },
+  "Terraform":            { stars: "300+",  downloads: "Moderate", smithery: null,   score: 7 },
+  "Azure DevOps":         { stars: "200+",  downloads: "Moderate", smithery: null,   score: 8 },
+  "CircleCI":             { stars: "150+",  downloads: "Low",    smithery: null,    score: 7 },
+  "Buildkite":            { stars: "100+",  downloads: "Low",    smithery: null,    score: 7 },
+  "dbt":                  { stars: "200+",  downloads: "Moderate", smithery: null,   score: 8 },
+  "JetBrains":            { stars: "300+",  downloads: "Moderate", smithery: null,   score: 8 },
+  // Databases
+  "PostgreSQL":           { stars: "79.6k", downloads: "High",   smithery: "1.8k",  score: 9 },
+  "SQLite":               { stars: "79.6k", downloads: "High",   smithery: "1.5k",  score: 9 },
+  "MongoDB":              { stars: "400+",  downloads: "Moderate", smithery: "600",  score: 8 },
+  "MySQL":                { stars: "200+",  downloads: "Moderate", smithery: "400",  score: 7 },
+  "Redis":                { stars: "79.6k", downloads: "Moderate", smithery: "350",  score: 8 },
+  "Supabase":             { stars: "500+",  downloads: "Moderate", smithery: "450",  score: 8 },
+  "Snowflake":            { stars: "150+",  downloads: "Low",    smithery: null,    score: 7 },
+  "BigQuery":             { stars: "100+",  downloads: "Low",    smithery: null,    score: 7 },
+  "Airtable":             { stars: "200+",  downloads: "Moderate", smithery: "300",  score: 7 },
+  "ClickHouse":           { stars: "100+",  downloads: "Low",    smithery: null,    score: 7 },
+  "Chroma":               { stars: "200+",  downloads: "Moderate", smithery: null,   score: 7 },
+  // Communication
+  "Slack":                { stars: "79.6k", downloads: "High",   smithery: "1.4k",  score: 9 },
+  "Microsoft 365":        { stars: null,    downloads: "High",   smithery: null,    score: 9 },
+  "Gmail & Google Workspace": { stars: "300+", downloads: "Moderate", smithery: "500", score: 7 },
+  "Twilio":               { stars: "150+",  downloads: "Low",    smithery: null,    score: 7 },
+  "SendGrid":             { stars: "100+",  downloads: "Low",    smithery: null,    score: 6 },
+  "ElevenLabs":           { stars: "200+",  downloads: "Moderate", smithery: null,   score: 8 },
+  // Project Management
+  "Notion":               { stars: "500+",  downloads: "1.2M+",  smithery: "1.1k",  score: 9 },
+  "Linear":               { stars: "400+",  downloads: "Moderate", smithery: "600",  score: 9 },
+  "Jira & Confluence":    { stars: "358",   downloads: "Moderate", smithery: "500",  score: 8 },
+  "Asana":                { stars: "200+",  downloads: "Low",    smithery: null,    score: 7 },
+  // Search
+  "Brave Search":         { stars: "79.6k", downloads: "High",   smithery: "800",   score: 9 },
+  "Exa Search":           { stars: "300+",  downloads: "Moderate", smithery: "400",  score: 8 },
+  "Google Maps":          { stars: "79.6k", downloads: "Moderate", smithery: "600",  score: 8 },
+  "Firecrawl":            { stars: "40.1k", downloads: "High",   smithery: "1.5k",  score: 10 },
+  "Apify":                { stars: "200+",  downloads: "Moderate", smithery: "350",  score: 8 },
+  // Cloud
+  "AWS Knowledge Base":   { stars: "79.6k", downloads: "Moderate", smithery: null,   score: 8 },
+  "AWS Documentation":    { stars: "300+",  downloads: "Moderate", smithery: null,   score: 8 },
+  "Google Cloud Run":     { stars: "200+",  downloads: "Low",    smithery: null,    score: 8 },
+  // Monitoring
+  "Datadog":              { stars: "200+",  downloads: "Moderate", smithery: null,   score: 8 },
+  "Grafana":              { stars: "300+",  downloads: "Moderate", smithery: null,   score: 8 },
+  "PagerDuty":            { stars: "100+",  downloads: "Low",    smithery: null,    score: 7 },
+  // CRM
+  "Salesforce":           { stars: "200+",  downloads: "Moderate", smithery: null,   score: 8 },
+  "HubSpot":              { stars: "150+",  downloads: "Low",    smithery: null,    score: 7 },
+  // Payments
+  "Stripe":               { stars: "993",   downloads: "Moderate", smithery: "400",  score: 9 },
+  "Shopify":              { stars: "200+",  downloads: "Moderate", smithery: null,   score: 8 },
+  // Productivity
+  "Google Drive":         { stars: "79.6k", downloads: "High",   smithery: "800",   score: 9 },
+  "Miro":                 { stars: "100+",  downloads: "Low",    smithery: null,    score: 6 },
+  // Automation
+  "Zapier":               { stars: null,    downloads: "High",   smithery: null,    score: 9 },
+  "Make (Integromat)":    { stars: "100+",  downloads: "Low",    smithery: null,    score: 7 },
+  "Composio":             { stars: "500+",  downloads: "Moderate", smithery: null,   score: 8 },
+  "Home Assistant":       { stars: "300+",  downloads: "Moderate", smithery: null,   score: 7 },
+  // Creative
+  "EverArt":              { stars: "79.6k", downloads: "Low",    smithery: null,    score: 7 },
+  "Replicate":            { stars: "150+",  downloads: "Moderate", smithery: null,   score: 7 },
+  // Finance
+  "CoinGecko":            { stars: "100+",  downloads: "Moderate", smithery: null,   score: 7 },
+  "Financial Datasets":   { stars: "100+",  downloads: "Low",    smithery: null,    score: 6 },
+};
+
+// Merge trust data into connectors
+connectors.forEach(function(c) {
+  var t = trustData[c.name];
+  if (t) { c.stars = t.stars; c.downloads = t.downloads; c.smithery = t.smithery; c.score = t.score; }
+  else { c.score = 5; }
+});
+
+// ═══════════════════════════════════════════════════
+// RENDERING
+// ═══════════════════════════════════════════════════
+const categories = {};
+const categoryIcons = {};
+connectors.forEach(c => {
+  if (!categories[c.category]) categories[c.category] = [];
+  categories[c.category].push(c);
+  categoryIcons[c.category] = c.icon;
+});
+
+document.getElementById('curatedCount').textContent = connectors.length;
+document.getElementById('catCount').textContent = Object.keys(categories).length;
+
+const tocGrid = document.getElementById('tocGrid');
+Object.keys(categories).forEach(cat => {
+  const a = document.createElement('a');
+  a.href = '#cat-' + cat.replace(/[^a-zA-Z0-9]/g, '-');
+  a.innerHTML = categoryIcons[cat] + ' ' + cat + ' <span style="color:var(--text-light)">(' + categories[cat].length + ')</span>';
+  tocGrid.appendChild(a);
+});
+
+function renderAll(filter, search) {
+  filter = filter || 'all';
+  search = search || '';
+  const main = document.getElementById('mainContent');
+  main.innerHTML = '';
+  let total = 0;
+  const s = search.toLowerCase();
+
+  Object.entries(categories).forEach(function([cat, items]) {
+    const filtered = items.filter(function(c) {
+      const mf = filter === 'all' || c.badge === filter;
+      const ms = !search || c.name.toLowerCase().indexOf(s) !== -1 || c.desc.toLowerCase().indexOf(s) !== -1 ||
+        c.author.toLowerCase().indexOf(s) !== -1 || c.category.toLowerCase().indexOf(s) !== -1;
+      return mf && ms;
+    });
+    if (filtered.length === 0) return;
+    total += filtered.length;
+
+    const section = document.createElement('section');
+    section.className = 'category-section';
+    section.id = 'cat-' + cat.replace(/[^a-zA-Z0-9]/g, '-');
+    section.innerHTML = '<div class="category-header"><span class="category-icon">' + categoryIcons[cat] +
+      '</span><h2>' + cat + '</h2><span class="count">' + filtered.length + ' connector' +
+      (filtered.length !== 1 ? 's' : '') + '</span></div><div class="connectors-grid">' +
+      filtered.map(renderCard).join('') + '</div>';
+    main.appendChild(section);
+  });
+
+  document.getElementById('resultCount').textContent =
+    total === connectors.length ? total + ' curated connectors' : 'Showing ' + total + ' of ' + connectors.length;
+  document.getElementById('noResults').classList.toggle('visible', total === 0);
+}
+
+function renderCard(c) {
+  var bc = {official:'badge-official',partner:'badge-partner',community:'badge-community'}[c.badge] || 'badge-community';
+  var bl = c.badge === 'community' ? 'Vetted' : c.badge.charAt(0).toUpperCase() + c.badge.slice(1);
+  var links = [];
+  if (c.repo) links.push('<a href="' + c.repo + '" target="_blank" rel="noopener nofollow">GitHub</a>');
+  if (c.npm) links.push('<a href="' + c.npm + '" target="_blank" rel="noopener nofollow">npm</a>');
+  if (c.docs) links.push('<a href="' + c.docs + '" target="_blank" rel="noopener nofollow">Docs</a>');
+
+  // Trust score styling
+  var sc = c.score || 5;
+  var scoreClass = sc >= 9 ? 'score-high' : sc >= 7 ? 'score-mid' : 'score-low';
+  var scoreLabel = sc >= 9 ? 'High Trust' : sc >= 7 ? 'Good Trust' : 'Emerging';
+
+  // Trust signals row
+  var signals = [];
+  if (c.stars) signals.push('<span class="trust-signal"><span class="ts-icon">\u2B50</span>' + c.stars + ' stars</span>');
+  if (c.downloads) signals.push('<span class="trust-signal"><span class="ts-icon">\u2B07\uFE0F</span>' + c.downloads + ' downloads</span>');
+  if (c.smithery) signals.push('<span class="trust-signal"><span class="ts-icon">\u2699\uFE0F</span>' + c.smithery + ' Smithery uses</span>');
+  signals.push('<span class="trust-score ' + scoreClass + '">' + scoreLabel + ' (' + sc + '/10)</span>');
+
+  return '<div class="connector-card" data-badge="' + c.badge + '">' +
+    '<div class="card-top"><span class="card-name">' + c.name + '</span>' +
+    '<span class="card-badge ' + bc + '">' + bl + '</span></div>' +
+    '<p class="card-desc">' + c.desc + '</p>' +
+    '<div class="card-meta">' +
+    '<span title="Author">\uD83C\uDFE2 ' + c.author + '</span>' +
+    '<span title="Version">\uD83C\uDFF7\uFE0F v' + c.version + '</span>' +
+    '<span title="Updated">\uD83D\uDCC5 ' + c.updated + '</span></div>' +
+    '<div class="card-install" onclick="copyInstall(this)" title="Click to copy">' + esc(c.install) + '</div>' +
+    (links.length ? '<div class="card-links">' + links.join('') + '</div>' : '') +
+    '<div class="card-trust">' + signals.join('') + '</div>' +
+    '</div>';
+}
+
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function copyInstall(el) {
+  navigator.clipboard.writeText(el.textContent.trim()).then(function() {
+    el.classList.add('copied');
+    setTimeout(function() { el.classList.remove('copied'); }, 1500);
+  });
+}
+
+var activeFilter = 'all';
+document.getElementById('filterPills').addEventListener('click', function(e) {
+  if (!e.target.classList.contains('filter-pill')) return;
+  document.querySelectorAll('.filter-pill').forEach(function(p) { p.classList.remove('active'); });
+  e.target.classList.add('active');
+  activeFilter = e.target.dataset.filter;
+  renderAll(activeFilter, document.getElementById('searchInput').value);
+});
+
+var searchTimeout;
+document.getElementById('searchInput').addEventListener('input', function(e) {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(function() { renderAll(activeFilter, e.target.value); }, 200);
+});
+
+var btn = document.getElementById('backToTop');
+window.addEventListener('scroll', function() { btn.classList.toggle('visible', window.scrollY > 400); });
+btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+renderAll();
+</script>
+</body>
+</html>
